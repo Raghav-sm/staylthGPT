@@ -17,26 +17,17 @@ export default function CodingMode({
 }: CodingModeProps) {
   const codingMessages = messages.filter((msg) => msg.mode === "coding");
 
-  if (codingMessages.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <Card className="p-8 bg-slate-800/50 border-purple-500/20 text-center max-w-md">
-          <Code2 className="w-12 h-12 mx-auto mb-4 text-purple-400" />
-          <h3 className="text-xl font-semibold text-white mb-2">Coding Mode</h3>
-          <p className="text-gray-300">
-            Get precise coding assistance, debug solutions, and technical
-            guidance. Optimized for accuracy and best practices.
-          </p>
-          <div className="mt-4 text-sm text-gray-400">
-            Temperature: {settings.temperature} | Focus: {settings.focus}
-          </div>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-4">
+      {codingMessages.length === 0 && (
+        <div className="text-center py-2">
+          <p className="text-gray-400 text-sm opacity-70">
+            Coding Mode | Get precise coding assistance, debug solutions, and
+            technical guidance
+          </p>
+        </div>
+      )}
+
       {codingMessages.map((message) => (
         <div
           key={message.id}
@@ -45,7 +36,7 @@ export default function CodingMode({
           }`}
         >
           {message.role === "assistant" && (
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-white" />
             </div>
           )}
@@ -53,8 +44,8 @@ export default function CodingMode({
           <Card
             className={`max-w-3xl p-4 ${
               message.role === "user"
-                ? "bg-blue-600/20 border-blue-500/30"
-                : "bg-slate-800/50 border-purple-500/20"
+                ? "bg-purple-900/30 border-purple-700/50"
+                : "bg-black/40 border-purple-600/30"
             }`}
           >
             <pre className="whitespace-pre-wrap text-sm font-mono text-gray-100">
@@ -63,7 +54,7 @@ export default function CodingMode({
           </Card>
 
           {message.role === "user" && (
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center flex-shrink-0">
               <User className="w-4 h-4 text-white" />
             </div>
           )}
@@ -72,10 +63,10 @@ export default function CodingMode({
 
       {isLoading && (
         <div className="flex gap-4 justify-start">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0">
             <Bot className="w-4 h-4 text-white" />
           </div>
-          <Card className="p-4 bg-slate-800/50 border-purple-500/20">
+          <Card className="p-4 bg-black/40 border-purple-600/30">
             <div className="flex space-x-2">
               <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
               <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-75"></div>

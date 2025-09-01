@@ -6,21 +6,21 @@ export const AI_CONFIGS: Record<AIMode, AIConfig> = {
     Focus on best practices, performance, and maintainability. Always explain your reasoning and include comments.`,
     temperature: 0.2,
     maxTokens: 2048,
-    model: "gemini-pro",
+    model: "gemini-2.0-flash",
   },
   creative: {
     systemPrompt: `You are a creative writing assistant. Help with storytelling, poetry, creative content, and expressive writing. 
     Be imaginative, engaging, and help develop compelling narratives and characters.`,
     temperature: 0.8,
     maxTokens: 2048,
-    model: "gemini-pro",
+    model: "gemini-2.0-flash",
   },
   doubt: {
     systemPrompt: `You are a research assistant. Provide comprehensive, well-researched answers with proper citations. 
     Help clarify doubts, explain complex concepts, and provide factual information from reliable sources.`,
     temperature: 0.4,
     maxTokens: 2048,
-    model: "gemini-pro",
+    model: "gemini-2.0-flash",
   },
   image: {
     systemPrompt: `You are an image generation assistant. Help create detailed prompts for image generation, 

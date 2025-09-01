@@ -17,28 +17,17 @@ export default function DoubtMode({
 }: DoubtModeProps) {
   const doubtMessages = messages.filter((msg) => msg.mode === "doubt");
 
-  if (doubtMessages.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <Card className="p-8 bg-slate-800/50 border-blue-500/20 text-center max-w-md">
-          <Search className="w-12 h-12 mx-auto mb-4 text-blue-400" />
-          <h3 className="text-xl font-semibold text-white mb-2">
-            Research Mode
-          </h3>
-          <p className="text-gray-300">
-            Get comprehensive, well-researched answers to your questions.
-            Perfect for learning and clearing doubts with factual information.
-          </p>
-          <div className="mt-4 text-sm text-gray-400">
-            Temperature: {settings.temperature} | Focus: {settings.focus}
-          </div>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-4">
+      {doubtMessages.length === 0 && (
+        <div className="text-center py-8">
+          <p className="text-gray-400 text-sm opacity-70">
+            Research Mode: Get comprehensive, well-researched answers to your
+            questions
+          </p>
+        </div>
+      )}
+
       {doubtMessages.map((message) => (
         <div
           key={message.id}
@@ -47,7 +36,7 @@ export default function DoubtMode({
           }`}
         >
           {message.role === "assistant" && (
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0">
               <Bot className="w-4 h-4 text-white" />
             </div>
           )}
@@ -55,8 +44,8 @@ export default function DoubtMode({
           <Card
             className={`max-w-3xl p-4 ${
               message.role === "user"
-                ? "bg-blue-600/20 border-blue-500/30"
-                : "bg-slate-800/50 border-blue-500/20"
+                ? "bg-blue-900/30 border-blue-700/50"
+                : "bg-black/40 border-blue-600/30"
             }`}
           >
             <div className="whitespace-pre-wrap text-gray-100 leading-relaxed">
@@ -65,7 +54,7 @@ export default function DoubtMode({
           </Card>
 
           {message.role === "user" && (
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center flex-shrink-0">
               <User className="w-4 h-4 text-white" />
             </div>
           )}
@@ -74,10 +63,10 @@ export default function DoubtMode({
 
       {isLoading && (
         <div className="flex gap-4 justify-start">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0">
             <Bot className="w-4 h-4 text-white" />
           </div>
-          <Card className="p-4 bg-slate-800/50 border-blue-500/20">
+          <Card className="p-4 bg-black/40 border-blue-600/30">
             <div className="flex space-x-2">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-75"></div>

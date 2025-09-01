@@ -21,11 +21,11 @@ const modeIcons = {
   image: Image,
 };
 
-const modeColors = {
-  coding: "from-purple-600 to-blue-600",
-  creative: "from-pink-600 to-rose-600",
-  doubt: "from-blue-600 to-cyan-600",
-  image: "from-green-600 to-teal-600",
+const modeDescriptions = {
+  coding: "Precise code assistance and debugging",
+  creative: "Expressive writing and creative content",
+  doubt: "Web-powered research and answers",
+  image: "AI image generation and visual creativity",
 };
 
 export default function Sidebar({
@@ -34,29 +34,39 @@ export default function Sidebar({
   settings,
   onSettingsChange,
 }: SidebarProps) {
-  const modes: { key: AIMode; label: string; description: string }[] = [
-    { key: "coding", label: "Coding", description: "Precise code assistance" },
-    { key: "creative", label: "Creative", description: "Expressive writing" },
-    { key: "doubt", label: "Research", description: "Web-powered answers" },
-    { key: "image", label: "Image Gen", description: "Visual creativity" },
+  const modes: { key: AIMode; label: string }[] = [
+    { key: "coding", label: "Coding" },
+    { key: "creative", label: "Creative" },
+    { key: "doubt", label: "Research" },
+    { key: "image", label: "Image Gen" },
   ];
 
   return (
-    <aside className="w-80 bg-slate-800/50 backdrop-blur-xl border-r border-purple-500/20 flex flex-col">
-      {/* Header */}
-      <div className="p-6 border-b border-purple-500/20">
+    <aside className="w-80 bg-gray-900/80 backdrop-blur-xl border-r border-gray-800 flex flex-col relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 pointer-events-none select-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none select-none" />
+
+      <div className="p-6 border-b border-gray-800 relative z-10">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            StaylthGPT
+          <h1 className="text-2xl font-bold text-white">
+            Staylth<span className="text-gray-400">GPT</span>
           </h1>
           <UserButton afterSignOutUrl="/" />
+        </div>
+
+        {/* Mode Description */}
+        <div className="text-center mt-4 mb-2">
+          <p className="text-sm text-gray-400">
+            {modeDescriptions[currentMode]}
+          </p>
         </div>
       </div>
 
       {/* Mode Selection */}
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 overflow-auto p-6 relative z-10">
         <div className="space-y-4">
-          <h2 className="text-sm font-medium text-gray-400 uppercase tracking-wide">
+          <h2 className="text-sm font-medium text-gray-400 uppercase tracking-wide mb-4 text-center">
             Select Mode
           </h2>
 
@@ -67,35 +77,30 @@ export default function Sidebar({
             return (
               <Button
                 key={mode.key}
-                variant={isActive ? "default" : "ghost"}
-                className={`w-full justify-start h-auto p-4 ${
+                variant="ghost"
+                className={`w-full justify-start h-auto p-4 transition-all duration-300 ${
                   isActive
-                    ? `bg-gradient-to-r ${
-                        modeColors[mode.key]
-                      } hover:opacity-90`
-                    : "hover:bg-slate-700/50"
-                }`}
+                    ? "bg-gray-800/70 text-white border border-gray-600"
+                    : "bg-transparent text-gray-400 hover:bg-gray-800/40 hover:text-white border border-transparent"
+                } rounded-lg`}
                 onClick={() => onModeChange(mode.key)}
               >
                 <Icon className="w-5 h-5 mr-3" />
-                <div className="text-left">
-                  <div className="font-medium">{mode.label}</div>
-                  <div className="text-xs opacity-70">{mode.description}</div>
-                </div>
+                <div className="font-medium">{mode.label}</div>
               </Button>
             );
           })}
         </div>
 
         {/* Settings Panel */}
-        <Card className="mt-8 bg-slate-700/30 border-slate-600/30">
+        <Card className="mt-8 bg-gray-800/50 border-gray-700 backdrop-blur-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-center gap-2 text-gray-300">
               <Settings className="w-4 h-4" />
               Parameters
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-6">
             <div>
               <div className="flex justify-between text-xs text-gray-400 mb-2">
                 <span>Temperature</span>
