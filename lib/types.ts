@@ -1,4 +1,4 @@
-export type AIMode = "coding" | "creative" | "doubt" | "image";
+export type AIMode = "linkedin" | "satire" | "formal" | "cynical";
 
 export interface AIConfig {
   systemPrompt: string;

@@ -42,7 +42,19 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
+  --animate-gradient: gradient 8s linear infinite;
+  @keyframes gradient {
+  to {
+    background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  --animate-shiny-text: shiny-text 8s infinite
+;
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;}
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;}}}
 
 :root {
   --background: 222.2 84% 4.9%;
@@ -105,29 +117,29 @@
 * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-slate-800/30;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     @apply bg-gray-400/40 rounded-full;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-600/40 ;
   }
 }
- 
+
 @keyframes spotlight {
   0% {
     opacity: 0;
@@ -136,5 +148,14 @@
   100% {
     opacity: 1;
     transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

@@ -7,13 +7,15 @@ import { useState } from "react";
 import { Message } from "@/lib/types";
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { Spotlight } from "@/components/ui/Spotlight";
+import { TransparentNavbar } from "@/components/navbar";
 
 export default function Dashboard() {
   const { currentMode, settings, switchMode, setSettings } = useAIMode();
   const [messages, setMessages] = useState<Message[]>([]);
 
   return (
-    <div className="flex h-screen bg-gray-950 relative overflow-hidden">
+    <div className="flex flex-col h-screen bg-gray-950 relative overflow-hidden">
+      <TransparentNavbar />
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
@@ -22,20 +24,22 @@ export default function Dashboard() {
 
       <BackgroundEffects />
 
-      <Sidebar
-        currentMode={currentMode}
-        onModeChange={switchMode}
-        settings={settings}
-        onSettingsChange={setSettings}
-      />
-      <main className="flex-1 flex flex-col relative z-10">
-        <ChatInterface
-          mode={currentMode}
-          messages={messages}
-          onMessagesChange={setMessages}
+      <div className="flex flex-1 overflow-hidden pt-16">
+        <Sidebar
+          currentMode={currentMode}
+          onModeChange={switchMode}
           settings={settings}
+          onSettingsChange={setSettings}
         />
-      </main>
+        <main className="flex-1 flex flex-col relative z-10">
+          <ChatInterface
+            mode={currentMode}
+            messages={messages}
+            onMessagesChange={setMessages}
+            settings={settings}
+          />
+        </main>
+      </div>
     </div>
   );
 }
