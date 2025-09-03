@@ -7,6 +7,7 @@ import { LandingTerminal } from "@/components/ui/LandingTerminal";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { BackgroundEffects } from "@/components/ui/BackgroundEffects";
 import { TransparentNavbar } from "@/components/navbar";
+import { TestimonialsSection } from "@/components/ui/AnimatedTestimonials ";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -94,6 +95,9 @@ export default async function Home() {
             </div>
           </div>
         </div>
+
+        {/* Testimonials Section */}
+        <TestimonialsSection />
 
         {/* Bottom CTA */}
         <div className="text-center mt-24 border-t border-gray-800 pt-16 max-w-3xl mx-auto">

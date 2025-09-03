@@ -5,10 +5,10 @@ import { AIMode, Message, ModeSettings } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Loader2 } from "lucide-react";
-import CodingMode from "@/components/modes/CodingMode";
-import CreativeMode from "@/components/modes/CreativeMode";
-import DoubtMode from "@/components/modes/CreativeMode";
-import ImageMode from "@/components/modes/ImageMode";
+import LinkedInMode from "@/components/modes/LinkedInMode";
+import SatireMode from "@/components/modes/SatireMode";
+import FormalMode from "@/components/modes/FormalMode";
+import CynicalMode from "@/components/modes/CynicalMode";
 
 interface ChatInterfaceProps {
   mode: AIMode;
@@ -84,35 +84,41 @@ export default function ChatInterface({
     const props = { messages, settings, isLoading };
 
     switch (mode) {
-      case "coding":
-        return <CodingMode {...props} />;
-      case "creative":
-        return <CreativeMode {...props} />;
-      case "doubt":
-        return <DoubtMode {...props} />;
-      case "image":
-        return <ImageMode {...props} />;
+      case "linkedin":
+        return <LinkedInMode {...props} />;
+      case "satire":
+        return <SatireMode {...props} />;
+      case "formal":
+        return <FormalMode {...props} />;
+      case "cynical":
+        return <CynicalMode {...props} />;
       default:
-        return <CodingMode {...props} />;
+        return <LinkedInMode {...props} />;
     }
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none select-none z-0" />
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30 pointer-events-none select-none z-0" />
+
       {/* Chat Messages */}
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 overflow-auto p-6 relative z-10">
         {renderModeComponent()}
         <div ref={messagesEndRef} />
       </div>
 
       {/* Input Area */}
-      <div className="border-t border-purple-500/20 p-6 bg-slate-800/30 backdrop-blur-xl">
-        <div className="flex gap-4">
+      <div className="border-t border-neutral-800 p-6 bg-black/20 backdrop-blur-xl relative z-10">
+        <div className="flex gap-4 items-end">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={`Ask anything in ${mode} mode...`}
-            className="flex-1 min-h-[60px] bg-slate-700/50 border-slate-600/50 resize-none"
+            placeholder={`Enter text to transform into ${mode} tone...`}
+            className="flex-1 min-h-[60px] bg-neutral-900/30 border-neutral-700/50 resize-none text-white rounded-2xl backdrop-blur-md"
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -124,7 +130,7 @@ export default function ChatInterface({
             onClick={handleSendMessage}
             disabled={!input.trim() || isLoading}
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+            className="rounded-full h-12 w-12 bg-neutral-800/70 hover:bg-neutral-700/70 border border-neutral-600/50 backdrop-blur-md transition-all duration-300 hover:scale-105"
           >
             {isLoading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
