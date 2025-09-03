@@ -12,7 +12,7 @@ export function LandingTerminal() {
         ✔ Tone set to: Professional (LinkedIn)
       </TypingAnimation>
       <TypingAnimation duration={30} delay={2000}>
-        Preview → "Excited to share my latest project milestone..."
+        Preview → &quot;Excited to share my latest project milestone...&quot;
       </TypingAnimation>
 
       <TypingAnimation duration={30} delay={4000}>
@@ -22,7 +22,8 @@ export function LandingTerminal() {
         ✔ Tone set to: Cynical
       </TypingAnimation>
       <TypingAnimation duration={30} delay={6000}>
-        Preview → "Oh great, another 'innovative' startup. Just what we needed."
+        Preview → &quot;Oh great, another &apos;innovative&apos; startup. Just
+        what we needed.&quot;
       </TypingAnimation>
 
       <TypingAnimation duration={30} delay={8000}>
@@ -32,8 +33,8 @@ export function LandingTerminal() {
         ✔ Tone set to: Satire
       </TypingAnimation>
       <TypingAnimation duration={30} delay={10000}>
-        Preview → "Breaking news: coffee still the leading cause of
-        productivity."
+        Preview → &quot;Breaking news: coffee still the leading cause of
+        productivity.&quot;
       </TypingAnimation>
 
       <TypingAnimation duration={30} delay={12000}>
@@ -43,7 +44,7 @@ export function LandingTerminal() {
         ✔ Tone set to: Slang
       </TypingAnimation>
       <TypingAnimation duration={30} delay={14000}>
-        Preview → "Bruh, this app just vibes different fr fr 🚀"
+        Preview → &quot;Bruh, this app just vibes different fr fr&quot;
       </TypingAnimation>
     </Terminal>
   );
